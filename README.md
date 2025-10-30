@@ -1,98 +1,89 @@
-# Backend Interview Challenge - Task Sync API
+# 🧩 Task Management API
 
-This is a backend developer interview challenge focused on building a sync-enabled task management API. The challenge evaluates understanding of REST APIs, data synchronization, offline-first architecture, and conflict resolution.
+## Overview
+The Task Management API is a simple yet powerful backend application I built using Python and FastAPI, with SQLite as the database to store task details. It supports all the core CRUD operations — creating, reading, updating, and deleting tasks — making it easy to manage and organize task data efficiently. I developed this project as part of my journey to learn backend development hands-on, focusing on how APIs connect with databases and handle real-world operations. Throughout the process, I used ChatGPT and Google to guide me through challenges, debug errors, and learn best practices for building clean and efficient APIs. This project not only helped me improve my technical skills but also gave me valuable experience in designing and implementing a complete backend system from scratch.
 
-## 📚 Documentation Overview
+---
 
-Please read these documents in order:
+## 🚀 Features
+- RESTful API built with **FastAPI**
+- SQLite database with **SQLAlchemy ORM**
+- Task model with `title`, `description`, `completed`
+- Offline-first design with sync endpoints
+- JSON-based CRUD operations
+- Unit testing using **pytest** and **FastAPI TestClient**
+- Simple web UI (HTML + JS) for testing API endpoints
 
-1. **[📋 Submission Instructions](./docs/SUBMISSION_INSTRUCTIONS.md)** - How to submit your solution (MUST READ)
-2. **[📝 Requirements](./docs/REQUIREMENTS.md)** - Detailed challenge requirements and implementation tasks
-3. **[🔌 API Specification](./docs/API_SPEC.md)** - Complete API documentation with examples
-4. **[🤖 AI Usage Guidelines](./docs/AI_GUIDELINES.md)** - Guidelines for using AI tools during the challenge
+---
 
-**⚠️ Important**: DO NOT create pull requests against this repository. All submissions must be through private forks.
+## 🧠 My Learning Experience
 
-## Challenge Overview
+This project was part of my journey to explore and practice backend development. Completing it within a short time frame of just 2–3 hours was definitely challenging, but also incredibly rewarding. With the help of AI tools like ChatGPT, GitHub Copilot, and Google, I was able to navigate through the tough parts and bring the project to life.
 
-Candidates are expected to implement a backend API that:
-- Manages tasks (CRUD operations)
-- Supports offline functionality with a sync queue
-- Handles conflict resolution when syncing
-- Provides robust error handling
+One of the biggest challenges I faced was building the offline queue system, since the API was meant to function independently from any web or mobile application. Getting this mechanism to work properly required a lot of experimentation and creative problem-solving.
 
-## Project Structure
+Another major hurdle was testing. The test files provided were written in TypeScript, while my entire backend was developed in Python using FastAPI. This meant I had to adapt and perform manual testing before creating my own Python-based test cases to ensure the API worked correctly.
 
-```
-backend-interview-challenge/
-├── src/
-│   ├── db/             # Database setup and configuration
-│   ├── models/         # Data models (if needed)
-│   ├── services/       # Business logic (TO BE IMPLEMENTED)
-│   ├── routes/         # API endpoints (TO BE IMPLEMENTED)
-│   ├── middleware/     # Express middleware
-│   ├── types/          # TypeScript interfaces
-│   └── server.ts       # Express server setup
-├── tests/              # Test files
-├── docs/               # Documentation
-└── package.json        # Dependencies and scripts
-```
+Despite the challenges, I didn’t give up. By using tools like Google, ChatGPT, Copilot, and Gemini, I was able to debug issues, improve my code, and verify the functionality of the API. This experience helped me grow both technically and personally — teaching me how to stay persistent, learn quickly, and use modern tools effectively to solve real-world problems.
 
-## Getting Started
+I used **ChatGPT** to:
+- Generate boilerplate FastAPI code and understand API structure.
+- Debug issues such as 422 and 404 errors.
+- Write clear `requirements.txt`, test cases, and Pydantic schema updates.
+- Learn about modern Python features like async support, dependency injection, and request validation.
 
-### Prerequisites
-- Node.js (v18 or higher)
-- npm or yarn
+I also used **Google** to:
+- Search for common FastAPI and SQLAlchemy integration problems.
+- Understand Python’s virtual environments and testing with pytest.
+- Research deployment guides for Render and related hosting platforms.
 
-### Setup
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Copy environment variables:
-   ```bash
-   cp .env.example .env
-   ```
-4. Run the development server:
-   ```bash
-   npm run dev
-   ```
+Overall, combining **AI guidance** with **hands-on coding** helped me:
+- Strengthen my understanding of REST APIs.
+- Improve debugging and testing skills.
+- Learn how to translate TypeScript/Node.js-style tests into Python equivalents.
+- Build a real-world project end-to-end.
 
-### Available Scripts
+---
 
-- `npm run dev` - Start development server with hot reload
-- `npm run build` - Build TypeScript to JavaScript
-- `npm run start` - Start production server
-- `npm test` - Run tests
-- `npm run test:ui` - Run tests with UI
-- `npm run lint` - Run ESLint
-- `npm run typecheck` - Check TypeScript types
+## 🧩 Tech Stack
+| Category | Tools Used |
+|-----------|-------------|
+| Framework | FastAPI |
+| Database | SQLite + SQLAlchemy |
+| Validation | Pydantic |
+| Testing | pytest, FastAPI TestClient |
+| Environment | Python-dotenv |
+| Deployment | Render (Free Tier) |
+| Frontend | HTML, CSS, JavaScript (for quick API testing) |
 
-## Your Task
+---
 
-### Key Implementation Files
+# ⚙️ Setup Instructions
 
-You'll need to implement the following services and routes:
+## 1. Project Setup
 
-- `src/services/taskService.ts` - Task CRUD operations
-- `src/services/syncService.ts` - Sync logic and conflict resolution  
-- `src/routes/tasks.ts` - REST API endpoints
-- `src/routes/sync.ts` - Sync-related endpoints
-
-### Before Submission
-
-Ensure all of these pass:
+### Clone the repository
 ```bash
-npm test          # All tests must pass
-npm run lint      # No linting errors
-npm run typecheck # No TypeScript errors
-```
+git clone https://github.com/georgebiju915/backend-interview-challenge
+cd backend-interview-challenge
 
-### Time Expectation
+python -m venv .venv
+.venv\Scripts\activate     # for Windows
+source .venv/bin/activate
 
-This challenge is designed to take 2-3 hours to complete.
+pip install -r requirements.txt
 
-## License
+### Api Implementation
+src/
+├── main.py          # Entry point of the FastAPI app
+├── models.py        # Database models (SQLAlchemy)
+├── schemas.py       # Pydantic schemas for validation
+├── database.py      # SQLite database connection
+├── services.py      # Business logic for task operations
+└── routes/
+###  Execution
+uvicorn src.main:app --reload
 
-This project is for interview purposes only.
+###  Testing
+pip install httpx pytest-asyncio
+pytest -v
